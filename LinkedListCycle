@@ -1,0 +1,24 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+//This uses Floyd's Cycle Detection algo
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        ListNode *slowIter = head, *fastIter = head;
+        while(slowIter && fastIter && fastIter->next != nullptr){
+            slowIter = slowIter->next;
+            fastIter = fastIter->next->next;
+            if(slowIter == fastIter){
+                return true;
+            }
+        }
+
+        return false;
+    }
+};
